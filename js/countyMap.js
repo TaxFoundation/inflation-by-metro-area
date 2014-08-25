@@ -7,9 +7,9 @@ var svg = d3.select("body").append("svg")
 
 // Define increments for data scale
 var dataScale = [],
-    min = 2.5, //Floor for the first step
-    max = 12, //Anything above the max is the final step
-    steps = 6,
+    min = 2, //Floor for the first step
+    max = 11, //Anything above the max is the final step
+    steps = 10,
     increment = (max-min)/(steps-1);
 // Create the scale of data values from min to max by # of steps
 for (var step = 0; step < steps; step++) {
@@ -96,7 +96,7 @@ function ready(error, us, data) {
 
 var adjustment = d3.scale.linear()
                 .domain([0, width])
-                .range([0, 400]);
+                .range([0, 250]);
 
 function addTooltip(label, number){
   tooltip.transition()
@@ -117,7 +117,7 @@ function drawLegend() {
 
     for (var i = 0, j = colors.length; i < j; i++){
         var fill = colors[i];
-        var label = "$" + (min + increment*i).toFixed(2) + ((i === j - 1) ? "+" : "-" + (min + increment*(i+1)).toFixed(2));
+        var label = "$" + parseInt(min + increment*i) + ((i === j - 1) ? "+" : "-" + parseInt(min + increment*(i+1)));
         legendData[i+1]= {"color": fill, "label": label};
     }
 
